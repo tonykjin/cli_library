@@ -1,10 +1,11 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 inquirer
   .prompt([
     {
       type: 'rawlist',
-      name: 'bookManager',
+      name: 'main',
       message: '==== Book Manager ====',
       choices: [
         'View all books',
@@ -16,6 +17,8 @@ inquirer
       default: false
     }
   ])
-  .then([
-    console.log(answers)
-  ])
+  .then((answers) => {
+    console.log(JSON.stringify(answers, null, '    '));
+    console.info('Answers var: ', answers);
+    // (answers === 'View all books') ? () :
+  });
