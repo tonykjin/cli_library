@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const viewBooks = require('../api/view-books');
+const addBooks = require('../api/add-books');
 const lib = require('../api/books.json');
 
 (async () => {
@@ -25,9 +26,8 @@ const lib = require('../api/books.json');
       ])
       .then((answers) => {
         const { main } = answers;
-        if (main == 'View all books') {
-          viewBooks( lib );
-        };
+        (main == 'View all books') ? viewBooks( lib ) :
+        (main == 'Add a book') ? addBooks( lib ) : console.log('err');
       });
   } catch (err) {
     console.error(err);
