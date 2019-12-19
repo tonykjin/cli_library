@@ -1,21 +1,14 @@
-const inquirer = require('inquirer');
+const fs = require('fs');
+const path = require('path');
 
-inquirer
-  .prompt([
-    {
-      type: 'rawlist',
-      name: 'bookManager',
-      message: '==== Book Manager ====',
-      choices: [
-        'View all books',
-        'Add a book',
-        'Edit a book',
-        'Search for a book',
-        'Save and Exit'
-      ],
-      default: false
-    }
-  ])
-  .then([
-    console.log(answers)
-  ])
+const lib = require('../lib/books.json');
+const main = require('../api/main');
+
+(async () => {
+  try {
+    main( lib );
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
