@@ -28,13 +28,16 @@ module.exports = ( lib ) => {
       const { book_title, book_author, book_description } = answers;
       fs.readFile(path.resolve(__dirname, 'books.json'), (err, data) => {
         if (err) throw err;
+        
         let json = JSON.parse(data);
+
         json.push({
           "id": (json[json.length-1]["id"] + 1),
           "title": book_title,
           "author": book_author,
           "description": book_description
         });
+
         fs.writeFile(path.resolve(__dirname, 'books.json'), JSON.stringify(json), (err, result) => {
           if (err) throw err;
           console.log(`Book [${(json[json.length-1]["id"])}] Saved`);

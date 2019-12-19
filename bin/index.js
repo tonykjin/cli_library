@@ -4,6 +4,7 @@ const path = require('path');
 
 const viewBooks = require('../api/view-books');
 const addBooks = require('../api/add-books');
+const editBooks = require('../api/edit-books');
 const lib = require('../api/books.json');
 
 (async () => {
@@ -27,7 +28,8 @@ const lib = require('../api/books.json');
       .then((answers) => {
         const { main } = answers;
         (main == 'View all books') ? viewBooks( lib ) :
-        (main == 'Add a book') ? addBooks( lib ) : console.log('err');
+        (main == 'Add a book') ? addBooks( lib ) : 
+        (main == 'Edit a book') ? editBooks( lib ) : console.log('err');
       });
   } catch (err) {
     console.error(err);
