@@ -14,7 +14,6 @@ module.exports = async ( lib ) => {
       }
     ])
     .then((answers) => {
-      console.log('answers:', answers);
       const book = lib.find((index) => {
         if (index.title == answers.view) {
           return index;
