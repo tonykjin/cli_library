@@ -29,7 +29,7 @@ const edit = ( input ) => {
     ])
     .then((answers) => {
       const { book_title, book_author, book_description } = answers;
-      fs.readFile(path.resolve(__dirname, 'books.json'), (err, data) => {
+      fs.readFile(path.resolve(__dirname, '../lib/books.json'), (err, data) => {
         if (err) throw err;
 
         let json = JSON.parse(data);
@@ -46,7 +46,7 @@ const edit = ( input ) => {
           return x;
         });
 
-        fs.writeFile(path.resolve(__dirname, 'books.json'), JSON.stringify(output), (err, result) => {
+        fs.writeFile(path.resolve(__dirname, '../lib/books.json'), JSON.stringify(output), (err, result) => {
           if (err) throw err;
           console.log('Book Saved');
         });

@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = ( lib ) => {
+module.exports = async ( lib ) => {
   inquirer
     .prompt([
       {
@@ -26,7 +26,7 @@ module.exports = ( lib ) => {
     ])
     .then((answers) => {
       const { book_title, book_author, book_description } = answers;
-      fs.readFile(path.resolve(__dirname, 'books.json'), (err, data) => {
+      fs.readFile(path.resolve(__dirname, '../lib/books.json'), (err, data) => {
         if (err) throw err;
         
         let json = JSON.parse(data);
@@ -38,10 +38,10 @@ module.exports = ( lib ) => {
           "description": book_description
         });
 
-        fs.writeFile(path.resolve(__dirname, 'books.json'), JSON.stringify(json), (err, result) => {
+        fs.writeFile(path.resolve(__dirname, '../lib/books.json'), JSON.stringify(json), (err, result) => {
           if (err) throw err;
           console.log(`Book [${(json[json.length-1]["id"])}] Saved`);
         });
-      })
+      });
     });
 };
